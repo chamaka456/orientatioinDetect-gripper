@@ -8,17 +8,7 @@ while True:
     image = cv2.resize(image, (1000, 1000))
     imagebg = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-    height, width = imagebg.shape
-    threshold = 170
-
-    for i in np.arange(height):
-        for j in np.arange(width):
-            a = imagebg[i, j]
-            if a > threshold:
-                b = 255
-            else:
-                b = 0
-            imagebg.itemset((i, j), b)
+    ret,thresh1 = cv2.threshold(img,170,255,cv2.THRESH_BINARY)
 
     contours, hierachy = cv2.findContours(imagebg, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
 
